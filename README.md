@@ -48,7 +48,7 @@ By working on this, I gained practical exposure to business analysis and honed m
 - **ad-hoc-requests.pdf**: Outlines the 10 business scenarios requiring analysis.
 
 ### SQL Scripts
-- A folder containing SQL queries used to extract and process data.
+- SQL queries used to extract and process data.
 
 ### Presentation
 - A PowerPoint file summarizing insights and actionable recommendations.
