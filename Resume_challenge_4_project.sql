@@ -4,6 +4,7 @@ FROM dim_customer
 WHERE customer = "Atliq Exclusive" AND region = "APAC";
 
 
+
 -- What is the percentage of unique product increase in 2021 vs. 2020?
 WITH product_cnt_2020 AS 
 		(SELECT
@@ -21,11 +22,15 @@ SELECT product_cnt_2020.unique_products_2020 AS unique_products_2020,
 FROM product_cnt_2020, product_cnt_2021;
 
 
+
+
 --  Provide a report with all the unique product counts for each  segment  and sort them in descending order of product counts.
 SELECT segment, COUNT(product_code) as product_count
 FROM dim_product
 GROUP BY segment
 ORDER BY product_count DESC;
+
+
 
 
 --  Follow-up: Which segment had the most increase in unique products in 2021 vs 2020?
@@ -52,6 +57,8 @@ FROM product_cnt_2020 JOIN product_cnt_2021 ON product_cnt_2020.segment = produc
 ORDER BY difference DESC;
 
 
+
+
 --  Get the products that have the highest and lowest manufacturing costs.
 WITH max_cost AS
 			(SELECT p.product_code, p.product, m.manufacturing_cost
@@ -72,6 +79,8 @@ SELECT * from min_cost;
 
 
 
+
+
 --  Generate a report which contains the top 5 customers who received an average high pre_invoice_discount_pct  
 -- for the  fiscal  year 2021  and in the Indian  market.
 SELECT 
@@ -85,6 +94,8 @@ WHERE pinv.fiscal_year = 2021 AND c.market = 'India'
 GROUP BY pinv.customer_code, c.customer
 ORDER BY avg_discount DESC
 LIMIT 5;
+
+
 
 
 --  Get the complete report of the Gross sales amount for the customer  “Atliq Exclusive”  for each month.
@@ -103,6 +114,8 @@ GROUP BY  Year, Month
 ORDER BY Year, Month;
 
 
+
+
 --  In which quarter of 2020, got the maximum total_sold_quantity?
 SELECT 
     CASE 
@@ -117,6 +130,8 @@ WHERE fiscal_year = 2020
 GROUP BY Quarter
 ORDER BY total_sold_quantity DESC
 LIMIT 1;
+
+
 
 
 --  Which channel helped to bring more gross sales in the fiscal year 2021 and the percentage of contribution?
@@ -142,6 +157,8 @@ FROM Channel_gross_price cgp
 CROSS JOIN Total_gross_price tgp
 ORDER BY gross_price_mln DESC
 LIMIT 1;
+
+
 
 
 
